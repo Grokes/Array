@@ -93,20 +93,54 @@ namespace Array
                     arr[i, j] = rand.Next(-100, 100);
 
             int sum = 0;
-            int indexMin = arr.Cast<int>().Min();
-            int indexMax = arr.Cast<int>().Max();
-            for (int i = 0; i < arr.GetUpperBound(0) + 1; ++i)
+            int Min = arr.Cast<int>().Min();
+            int Max = arr.Cast<int>().Max();
+
+            int[] indMin = Find(arr, Min);
+            int[] indMax = Find(arr, Max);
+
+            for (int i = Math.Min(indMin[0], indMax[0]); i < Math.Max(indMin[0], indMax[0]); i++)
             {
-                for (int j = 0; j < arr.GetUpperBound(1) + 1; ++j)
-                    Console.Write(arr[i, j] + ", ");
-                Console.WriteLine();
+                for (int j = Math.Min(indMin[1], indMax[1]); j < Math.Max(indMin[1], indMax[1]); j++)
+                {
+                    sum += arr[i, j];
+                }
             }
             
             PrintArr(arr);
-            Console.WriteLine(indexMin);
-            Console.WriteLine(indexMax);
+            Console.WriteLine(Min);
+            Console.WriteLine(Max);
+            Console.WriteLine(sum);
+        }
+        public static void Task3()
+        {
+            string temp = Console.ReadLine();
+            StringBuilder str = new StringBuilder(temp);
 
-            
+            for (int i = 0; i < str.Length; ++i)
+                str[i] = (char)(str[i] + 3);
+            Console.WriteLine(str);
+            for (int i = 0; i < str.Length; ++i)
+                str[i] = (char)(str[i] - 3);
+            Console.WriteLine(str);
+        }
+
+        static int[] Find(int[,] arr,int el)
+        {
+            int[] result = { -999, -999};
+            for (int i = 0; i < arr.GetLength(0); ++i)
+            {
+                for (int j = 0; j < arr.GetLength(1); ++j)
+                {
+                    if (arr[i, j] == el)
+                    {
+                        result[0] = i;
+                        result[1] = j;
+                        return result;
+                    }
+                }
+            }
+            return result;
         }
         static void PrintArr(double[] arr)
         {

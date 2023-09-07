@@ -11,7 +11,7 @@ namespace Array
     {
         static void Main(string[] args)
         {
-            Task.Task2();
+            Task.Task3();
         }
     }
 }
