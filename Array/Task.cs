@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -134,6 +135,18 @@ namespace Array
             Console.WriteLine();
             PrintArr(MatrixMulti(test1, test2));
             
+        }
+        public static void Task6()
+        {
+            string str = Console.ReadLine();
+            StringBuilder result = new StringBuilder();
+            var temp = str.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+            for (int i = 0; i < temp.Length; ++i)
+            {
+                result.Append(temp[i][0].ToString().ToUpper() + temp[i].Substring(1) + ' ');
+            }
+            Console.WriteLine(result);
         }
 
         static int[] Find(int[,] arr,int el)
