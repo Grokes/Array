@@ -136,6 +136,28 @@ namespace Array
             PrintArr(MatrixMulti(test1, test2));
             
         }
+        public static void Task5()
+        {
+            string str = Console.ReadLine();
+            int result = 0;
+
+            var temp =  str.Split(' ');
+
+            result = int.Parse(temp[0]);
+
+            for (int i = 1; i < temp.Length; i += 2)
+            {
+                if (temp[i][0] == '+')
+                {
+                    result += int.Parse(temp[i + 1]);
+                }
+                else if (temp[i][0] == '-')
+                {
+                    result -= int.Parse(temp[i + 1]);
+                }
+            }
+            Console.WriteLine(result);
+        }
         public static void Task6()
         {
             string str = Console.ReadLine();
