@@ -124,6 +124,17 @@ namespace Array
                 str[i] = (char)(str[i] - 3);
             Console.WriteLine(str);
         }
+        public static void Task4()
+        {
+            int[,] test1 = { { 1, 2 }, { 2, 1 } };
+            int[,] test2 = { { 1, 2 }, { 2, 1 } };
+            PrintArr(test1);
+            Console.WriteLine();
+            PrintArr(test2);
+            Console.WriteLine();
+            PrintArr(MatrixMulti(test1, test2));
+            
+        }
 
         static int[] Find(int[,] arr,int el)
         {
@@ -165,5 +176,58 @@ namespace Array
                 Console.WriteLine();
             }
         }
+        static int[,] MatrixMulti(int[,] matrix, int num)
+        {
+            for (int i = 0; i < matrix.GetLength(0); ++i)
+            {
+                for (int j = 0; j < matrix.GetLength(1); ++j)
+                {
+                    matrix[i, j] *= num;
+                }
+            }
+            return matrix;
+        }
+        static int[,] MatrixAddition(int[,] matrix1, int[,] matrix2)
+        {
+            if (matrix1.GetLength(0) != matrix2.GetLength(0) && matrix1.GetLength(1) != matrix2.GetLength(1))
+                throw new Exception("Impossible");
+
+            int[,] result = new int[matrix1.GetLength(0), matrix1.GetLength(1)];
+
+            for (int i = 0; i < result.GetLength(0); ++i)
+            {
+                for (int j = 0; j < result.GetLength(1); ++j)
+                {
+                    result[i, j] = matrix1[i, j] + matrix2[i, j];
+                }
+            }
+            return result;
+        }
+        static int[,] MatrixMulti(int[,] matrix1, int[,] matrix2)
+        {
+            if (matrix1.GetLength(1) != matrix2.GetLength(0))
+                throw new Exception("Impossible");
+
+            int[,] result = new int[matrix1.GetLength(0), matrix2.GetLength(1)];
+
+            for (int i = 0; i < result.GetLength(0); ++i)
+            {
+                for (int j = 0; j < result.GetLength(1); ++j)
+                {
+                    result[i, j] = GetC_ij(matrix1, matrix2, i, j);
+                }
+            }
+            return result;
+        }
+        static int GetC_ij(int[,] matrix1, int[,] matrix2, int line, int column)
+        {
+            int result = 0;
+            for (int i = 0; i < matrix1.GetLength(1); ++i)
+            {
+                result += matrix1[line, i] * matrix2[i, column];
+            }
+            return result;
+        }
     }
+
 }
