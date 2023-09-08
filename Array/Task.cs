@@ -148,6 +148,15 @@ namespace Array
             }
             Console.WriteLine(result);
         }
+        public static void Task7()
+        {
+            string test = Console.ReadLine();
+
+            string[] temp = test.Split(new[] { "die" }, StringSplitOptions.None);
+
+            Console.WriteLine(test.Replace("die", "***"));
+            Console.WriteLine($"Удалено {temp.Length - 1} слов");
+        }
 
         static int[] Find(int[,] arr,int el)
         {
